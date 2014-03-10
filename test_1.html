@@ -1,0 +1,119 @@
+<html>
+<head>
+<title>Candidate Assessment Questions - Patrick Loper III</title>
+<script type="text/javascript" src="js/jquery-1.11.0.js"></script>
+<script type="text/javascript">
+/*
+****************************************************
+Handling Public vs. Private Variables and Functions*
+****************************************************
+I handle my public variables in a way so that I can use them to store information that might be needed elsewhere outside of the object that they are created in.
+I lock down data inside functions when I use private variables. I can use the use of private variables to keep things from running together,
+but I prefer to define all of my major variables outside of my functions in most cases. Mostly since in my experience that if you aren't careful,
+you can easily run into memory issues from the same variable being created over and over again. The for loop is an example of this.
+If I were to create the variable inside to for loop, it would be private, but the for loop would keep creating the same variable.
+In this exercise it isn't that big of an issue, but in a few of the scripts that I have written, if I overlooked that, I could run it memory problems with the
+amount of data I was working with.
+
+****************************************************
+****************************************************
+*/
+// Given data
+var data = "5,3,4,2,12,22,55,66,15,28,9";
+//Cleaning the data up so that I can easily add it into the BST later on.
+data = data.split(',');
+
+//Creating my function for the node container that I will be using in the creation of my BST.
+//It contains three public variables.
+function node(number){
+	this.left = undefined;
+	this.right = undefined;
+	this.value = number;
+};
+
+//Here is the main function that I use to add nodes to the tree and expand it.
+function addNode(tree, num){
+//if tree has a value, it will add a node to it below.
+if(tree){
+	//if the value of the last node is lower than the value of the current node, the current node is added to the right side of the last node.
+	//It checks if there is a node already in the right spot, and if so it adds a new slot to hold the new node.
+	if(tree.value < num.value){
+		if(tree.right) {
+			addNode(tree.right, num);
+		} else {
+			tree.right = num;
+		
+		}
+	} else {
+		//if the current value is lower than the last node, then it is added to the left side.
+		//This also checks to see if there is already a value in the left slot, and if so it adds a new spot to hold the new node.
+		if(tree.left) {
+			addNode(tree.left, num);
+		} else {
+		tree.left = num;
+}
+}
+//if tree did not have a value, it sets it to my first node.
+} else {
+	tree = num;
+	}
+	//this brings the value out of the function, so that it can be printed on the command line.
+	return tree;
+};
+
+//I am creating the variable I will need to use for calculating the height of my BST.
+var height = 1
+function nodeDepth(d) {
+	//I load my BST into this function.
+	//I then check if it can go down one on the left side, and if it can it goes down again, if it can't it goes down the right side.
+	if(d.left) {
+	height = height + 1
+	nodeDepth(d.left)
+	} else if(d.right){
+		height = height + 1
+		nodeDepth(d.right)
+	
+	}
+		
+
+}
+
+//Here is the function that is used to print my BST.
+function showTree(few){
+	if(few.left){
+		showTree(few.left);
+	}
+	
+	console.log(few.value);
+	if(few.right){
+	showTree(few.right);
+	}
+
+}
+
+//I am creating the variables I will need to dynamically create my BST.
+var info 
+var tree
+var generalNode
+//I use this for loop to dynamically create my BST.
+for(var z = 0; z < data.length; ++z){
+
+	info = data[z];
+	generalNode = new node(info);
+	tree = addNode(tree, generalNode);
+	//console.log(generalNode);
+	
+	
+	
+}
+//Here I am calling the function I need to calculate the height of my BST.
+nodeDepth(tree);
+//Here I am printing my output to the command line.
+showTree(tree);
+//console.log(tree);
+console.log('height:'+ height);
+</script>
+</head>
+<body>
+</body>
+</html>

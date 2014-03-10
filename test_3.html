@@ -1,0 +1,139 @@
+<html>
+<head>
+<script type="text/javascript" src="js/jquery-1.11.0.js"></script>
+<title> Candidate Assessment Questions - Patrick Loper III
+</title>
+<style>
+.hover{
+background:#0f0;
+width:8;
+height:8;
+float:left;
+margin:1;
+}
+
+.black{
+background:#000;
+width:8;
+height:8;
+float:left;
+margin:1;
+
+}
+
+
+.grey{
+background:#999;
+width:8;
+height:8;
+float:left;
+margin:1;
+}
+
+.red{
+background:#f00;
+width:8;
+height:8;
+float:left;
+margin:1;
+}
+</style>
+</head>
+<body>
+<div id="3">
+<script type="text/javascript">
+$( 'body' ).find( '> div' ).css( {
+	width:250,
+	height:250
+});
+	var m = 0;
+for ( var i = 0; i < 25; i++ ) {
+	for ( var n = 0; n < 25; n++ ) {
+
+	m = m + 1;
+	$( 'body' ).find( '> div' ).append( '<div class="black"column="'+ n + '"total="'+ m +'"row="'+ i +'"marked="no" />' );
+	}
+
+}
+
+	for ( var j = 0; j < 625; j++ ) {
+	if ( j % 2 == 0 ) {
+		$( 'div > div:eq(' + j + ')' ).attr('class', 'grey');
+	}
+}
+
+$( 'div > div' ).mouseover( function() {
+
+	
+	 c = $(this).attr('row');
+	 o = $(this).attr('column');
+	 if($("div[row="+c+"]").attr('class') != 'red'){
+	 if($("div[column="+o+"]").attr('class') != 'red'){
+	$("div[row="+c+"]").attr( 'class', 'hover' );
+	$("div[column="+o+"]").attr( 'class', 'hover' );
+	}
+	}
+});
+
+$( 'div > div' ).click( function() {
+	bang = $(this).attr('row');
+	$("div[row="+bang+"]").attr( 'class', 'red' );
+	$("div[row="+bang+"]").attr( 'marked', 'yes' );
+});
+$( 'div > div' ).click( function() {
+	bang = $(this).attr('column');
+	$("div[column="+bang+"]").attr( 'class', 'red' );
+	$("div[column="+bang+"]").attr( 'marked', 'yes' );
+});
+
+$( 'div > div' ).mouseout( function() {
+		for ( var j = 0; j < 625; j++ ) {
+
+		if ( j % 2 == 0 ) {
+		if($('div > div:eq(' + j + ')').attr('marked') != 'yes'){
+			$( 'div > div:eq(' + j + ')' ).attr('class', 'grey');
+		} else{
+			$( 'div > div:eq(' + j + ')' ).attr('class', 'red');
+		}
+		} else {
+		if($('div > div:eq(' + j + ')').attr('marked') != 'yes'){
+			$( 'div > div:eq(' + j + ')' ).attr('class', 'black');
+		}	else{
+			$( 'div > div:eq(' + j + ')' ).attr('class', 'red');
+		}
+		}
+	}
+} );
+
+window.setInterval( function() {
+		for ( var j = 0; j < 625; j++ ) {
+		if ( j % 2 == 0 ) {
+		if($('div > div:eq(' + j + ')').attr('marked') != 'yes'){
+			$( 'div > div:eq(' + j + ')' ).attr('class', 'grey');
+		} else{
+			$( 'div > div:eq(' + j + ')' ).attr('class', 'red');
+		}
+		} else {
+		if($('div > div:eq(' + j + ')').attr('marked') != 'yes'){
+			$( 'div > div:eq(' + j + ')' ).attr('class', 'black');
+		}	else{
+			$( 'div > div:eq(' + j + ')' ).attr('class', 'red');
+		}
+		}
+	}
+},7000 );
+
+
+$(document).keydown(function(e){
+if (e.keyCode ==8){
+
+
+$("div > div[marked=yes]").attr('marked','no');
+return false;
+
+}
+})
+</script>
+</div>
+</body>
+</html>

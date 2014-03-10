@@ -1,0 +1,47 @@
+<html>
+<head>
+<LINK id="default_style" REL="StyleSheet" HREF="css/trial.css" TYPE="text/css">
+<title>Candidate Assessment Questions - Patrick Loper III</title>
+<script type="text/javascript" src="js/jquery-1.11.0.js"></script>
+<script type="text/javascript" >
+
+function swapStyleAwesome(style){
+document.getElementById('default_style').setAttribute('href', style);
+}
+
+
+
+</script>
+
+</head>
+<body>
+<div id="two">
+<p>
+<ul class="sc-menu">
+<li>Item 1</li>
+<li>Item 2</li>
+<li>Item 3</li>
+<li>Item 4</li>
+<li>Item 5</li>
+</ul>
+</p>
+<p>
+<button id="vertical" onclick="swapStyleAwesome('css/trial.css')">Vertical Style</button>
+<button id="horizontal" onclick="swapStyleAwesome('css/trial_horizontal.css')">Horizontal Style</button>
+</p>
+<script>
+$(".sc-menu li:nth-child(3)").css("background", "#00688B" );
+$(".sc-menu li:nth-child(3)").hover(
+function () {
+$(this).css("background","#ddd");
+},
+function(){
+$(this).css("background","#222");
+}
+);
+
+</script>
+</div>
+
+</body>
+</html>
